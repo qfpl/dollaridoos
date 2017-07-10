@@ -2,7 +2,7 @@
 
 module Data.Money where
 
-import Control.Lens (Lens, Getter, lens, Iso, iso, over, view, to)
+import Control.Lens (_Wrapped, Getter, Iso, iso, over, view, to)
 import Data.Monoid (Monoid, Sum(Sum))
 import Data.Semigroup (Semigroup, (<>))
 
@@ -23,9 +23,8 @@ moneySum :: Iso (Money a) (Money b) (Sum a) (Sum b)
 moneySum = iso getMoneySum Money
 
 -- | The raw numeric value inside monetary value
-getMoney :: Lens (Money a) (Money b) a b
-getMoney = lens (getSum . getMoneySum) setMon
-           where setMon (Money (Sum _)) z = (Money (Sum z))
+getMoney :: Iso (Money a) (Money b) a b
+getMoney = iso (\(Money a) -> a) Money . _Wrapped
 
 makeMoney_ :: a -> Money a
 makeMoney_ = Money . Sum
