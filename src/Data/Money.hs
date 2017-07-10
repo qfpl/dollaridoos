@@ -2,7 +2,7 @@
 
 module Data.Money where
 
-import Control.Lens (_Wrapped, Getter, Iso, iso, over, view, to)
+import Control.Lens (_Wrapped, Iso, iso, over, view)
 import Data.Monoid (Monoid, Sum(Sum))
 import Data.Semigroup (Semigroup, (<>))
 
@@ -25,13 +25,6 @@ moneySum = iso getMoneySum Money
 -- | The raw numeric value inside monetary value
 getMoney :: Iso (Money a) (Money b) a b
 getMoney = iso (\(Money a) -> a) Money . _Wrapped
-
-makeMoney_ :: a -> Money a
-makeMoney_ = Money . Sum
-
--- | Wrap a value into a monetary context
-makeMoney :: Getter a (Money a)
-makeMoney = to makeMoney_
 
 infixl 6 $+$
 ($+$) :: Num a => Money a -> Money a -> Money a
