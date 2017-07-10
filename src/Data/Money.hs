@@ -5,6 +5,7 @@ module Data.Money
     Money(Money)
   , getMoney
   , ($+$)
+  , ($-$)
   , (*$)
   , ($*)
   , ($/)
@@ -36,6 +37,10 @@ getMoney = iso (\(Money a) -> a) Money . _Wrapped
 infixl 6 $+$
 ($+$) :: Num a => Money a -> Money a -> Money a
 ($+$) = (<>)
+
+infixl 6 $-$
+($-$) :: Num a => Money a -> Money a -> Money a
+($-$) n m = over getMoney (subtract (view getMoney m)) n
 
 infixr 7 *$
 (*$) :: Num a => a -> Money a -> Money a
