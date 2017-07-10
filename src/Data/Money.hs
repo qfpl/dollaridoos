@@ -12,7 +12,7 @@ import Data.Semigroup (Semigroup, (<>))
 --
 --   Any num instances present are hidden, as multiplying money by money,
 --   for example, doesn't make any sense.
-newtype Money num = Money { getMoneySum :: (Sum num) }
+newtype Money num = Money (Sum num)
                     deriving (Semigroup, Monoid, Eq, Ord)
 
 instance Show num => Show (Money num) where
