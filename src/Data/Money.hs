@@ -3,14 +3,17 @@
 module Data.Money where
 
 import Control.Lens (Lens, Getter, lens, Iso, iso, over, view, to)
-import Data.Monoid (Monoid, Sum(Sum, getSum), (<>))
+import Data.Monoid (Monoid, Sum(Sum))
+import Data.Semigroup (Semigroup, (<>))
 
 -- | A representation of monetary values.
---   The monoid instance allows amounts of money to be added together.
---   Any num instances present are hidden, as dividing money by money,
+--
+--   The @Semigroup@ instance allows amounts of money to be added together.
+--
+--   Any num instances present are hidden, as multiplying money by money,
 --   for example, doesn't make any sense.
 newtype Money num = Money { getMoneySum :: (Sum num) }
-                    deriving (Monoid, Eq, Ord)
+                    deriving (Semigroup, Monoid, Eq, Ord)
 
 instance Show num => Show (Money num) where
   show m = '$': (show $ view getMoney m)
