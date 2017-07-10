@@ -1,6 +1,17 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-module Data.Money where
+module Data.Money
+  (
+    Money(Money)
+  , getMoney
+  , ($+$)
+  , (*$)
+  , ($*)
+  , ($/)
+  , ($^)
+  , ($^^)
+  , ($**)
+  ) where
 
 import Control.Lens (_Wrapped, Iso, iso, over, view)
 import Data.Monoid (Monoid, Sum(Sum))
