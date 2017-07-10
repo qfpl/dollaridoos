@@ -4,7 +4,6 @@ module Data.Money where
 
 import Control.Lens (Lens, Getter, lens, Iso, iso, over, view, to)
 import Data.Monoid (Monoid, Sum(Sum, getSum), (<>))
-import Data.Scientific (Scientific)
 
 -- | A representation of monetary values.
 --   The monoid instance allows amounts of money to be added together.
@@ -15,10 +14,6 @@ newtype Money num = Money { getMoneySum :: (Sum num) }
 
 instance Show num => Show (Money num) where
   show m = '$': (show $ view getMoney m)
-
--- | Scientific numbers seem an appropriate default choice to represent
---   monetary values.
-type MoneyS = Money Scientific
 
 -- | 
 moneySum :: Iso (Money a) (Money b) (Sum a) (Sum b)
