@@ -18,10 +18,6 @@ newtype Money num = Money { getMoneySum :: (Sum num) }
 instance Show num => Show (Money num) where
   show m = '$': (show $ view getMoney m)
 
--- | 
-moneySum :: Iso (Money a) (Money b) (Sum a) (Sum b)
-moneySum = iso getMoneySum Money
-
 -- | The raw numeric value inside monetary value
 getMoney :: Iso (Money a) (Money b) a b
 getMoney = iso (\(Money a) -> a) Money . _Wrapped
