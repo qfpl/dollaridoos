@@ -9,6 +9,7 @@ module Data.Money
   , (*$)
   , ($*)
   , ($/)
+  , ($/$)
   , ($^)
   , ($^^)
   , ($**)
@@ -53,6 +54,10 @@ infixl 7 $*
 infixl 7 $/
 ($/) :: Fractional a => Money a -> a -> Money a
 ($/) m x = over getMoney (/x) m
+
+infixl 7 $/$
+($/$) :: Fractional a => Money a -> Money a -> a
+($/$) n m = view getMoney n / view getMoney m
 
 infixr 8 $^
 ($^) :: (Num a, Integral b) => Money a -> b -> Money a
