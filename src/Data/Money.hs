@@ -1,3 +1,5 @@
+{-# LANGUAGE RankNTypes #-}
+
 module Data.Money
   (
     Money(Money)
@@ -13,7 +15,7 @@ module Data.Money
   , ($**)
   ) where
 
-import Control.Lens (Iso, iso, over, view)
+import Data.Profunctor (Profunctor, dimap)
 import Data.Monoid (Monoid, mempty, mappend)
 import Data.Semigroup (Semigroup, (<>))
 
@@ -34,11 +36,13 @@ instance Num a => Monoid (Money a) where
   mempty = Money 0
 
 instance Show num => Show (Money num) where
-  show m = '$': (show $ view money m)
+  show (Money m) = '$': (show m)
+
+type Iso s t a b = forall p f. (Profunctor p, Functor f) => p a (f b) -> p s (f t)
 
 -- | The raw numeric value inside monetary value
 money :: Iso (Money a) (Money b) a b
-money = iso (\(Money a) -> a) Money
+money = dimap (\(Money a) -> a) (fmap Money)
 
 infixl 6 $+$
 ($+$) :: Num a => Money a -> Money a -> Money a
@@ -46,11 +50,11 @@ infixl 6 $+$
 
 infixl 6 $-$
 ($-$) :: Num a => Money a -> Money a -> Money a
-($-$) n m = over money (subtract (view money m)) n
+($-$) (Money m) (Money n) = Money (m - n)
 
 infixr 7 *$
 (*$) :: Num a => a -> Money a -> Money a
-(*$) = over money . (*)
+(*$) x (Money m) = Money (x * m)
 
 infixl 7 $*
 ($*) :: Num a => Money a -> a -> Money a
@@ -58,21 +62,21 @@ infixl 7 $*
 
 infixl 7 $/
 ($/) :: Fractional a => Money a -> a -> Money a
-($/) m x = over money (/x) m
+($/) (Money m) x = Money (m/x)
 
 infixl 7 $/$
 ($/$) :: Fractional a => Money a -> Money a -> a
-($/$) n m = view money n / view money m
+($/$) (Money n) (Money m) = n / m
 
 infixr 8 $^
 ($^) :: (Num a, Integral b) => Money a -> b -> Money a
-($^) m x = over money (^x) m
+($^) (Money m) x = Money (m ^ x)
 
 infixr 8 $^^
 ($^^) :: (Fractional a, Integral b) => Money a -> b -> Money a
-($^^) m x = over money (^^x) m
+($^^) (Money m) x = Money (m ^^ x)
 
 infixr 8 $**
 ($**) :: Floating a => Money a -> a -> Money a
-($**) m x = over money (**x) m
+($**) (Money m) x = Money (m ** x)
 
