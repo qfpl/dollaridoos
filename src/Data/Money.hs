@@ -15,8 +15,8 @@ module Data.Money
   , ($**)
   ) where
 
-import Control.Lens (_Wrapped, Iso, iso, over, view)
-import Data.Monoid (Monoid, Sum(Sum))
+import Control.Lens (Iso, iso, over, view)
+import Data.Monoid (Monoid, mempty, mappend)
 import Data.Semigroup (Semigroup, (<>))
 
 -- | A representation of monetary values.
@@ -25,15 +25,22 @@ import Data.Semigroup (Semigroup, (<>))
 --
 --   Any num instances present are hidden, as multiplying money by money,
 --   for example, doesn't make any sense.
-newtype Money num = Money (Sum num)
-                    deriving (Semigroup, Monoid, Eq, Ord)
+newtype Money num = Money num
+                    deriving (Eq, Ord)
+
+instance Num a => Semigroup (Money a) where
+  Money m <> Money n = Money (m + n)
+
+instance Num a => Monoid (Money a) where
+  mappend = (<>)
+  mempty = Money 0
 
 instance Show num => Show (Money num) where
   show m = '$': (show $ view money m)
 
 -- | The raw numeric value inside monetary value
 money :: Iso (Money a) (Money b) a b
-money = iso (\(Money a) -> a) Money . _Wrapped
+money = iso (\(Money a) -> a) Money
 
 infixl 6 $+$
 ($+$) :: Num a => Money a -> Money a -> Money a
