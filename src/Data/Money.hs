@@ -36,7 +36,7 @@ instance Num a => Monoid (Money a) where
   mempty = Money 0
 
 instance Show num => Show (Money num) where
-  show (Money m) = '$': (show m)
+  show (Money m) = '$': show m
 
 type Iso s t a b = forall p f. (Profunctor p, Functor f) => p a (f b) -> p s (f t)
 
