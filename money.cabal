@@ -27,7 +27,6 @@ source-repository   head
 
 library
   exposed-modules:     Data.Money
-  other-extensions:    GeneralizedNewtypeDeriving
   ghc-options:         -Wall
   build-depends:
     base >= 4.5 && < 5
