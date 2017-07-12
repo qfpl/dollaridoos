@@ -1,6 +1,8 @@
 MONEY
 -----
 
+[![Build Status](https://travis-ci.org/gwils/money.svg?branch=master)](https://travis-ci.org/gwils/money)
+
 The money library provides a typesafe wrapper around numeric types
 that allows only those operations which are sensible in the context of
 monetary sums.
