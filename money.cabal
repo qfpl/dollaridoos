@@ -13,7 +13,7 @@ description:         A newtype for monetary with appropriate operations defined 
 homepage:            https://github.com/gwils/money
 bug-reports:         https://github.com/gwils/money/issues
 cabal-version:       >=1.10
-category:            Data
+category:            Finance
 build-type:          Simple
 tested-with:         GHC == 7.8.4, GHC == 7.10.3, GHC == 8.0.2
 extra-source-files:
