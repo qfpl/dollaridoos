@@ -1,7 +1,9 @@
-MONEY
+Dollaridoos
 -----
 
-[![Build Status](https://travis-ci.org/gwils/money.svg?branch=master)](https://travis-ci.org/gwils/money)
+![Data61](http://i.imgur.com/uZnp9ke.png)
+
+[![Build Status](https://travis-ci.org/qfpl/dollaridoos.svg?branch=master)](https://travis-ci.org/qfpl/dollaridoos)
 
 The money library provides a typesafe wrapper around numeric types
 that allows only those operations which are sensible in the context of
