@@ -72,7 +72,7 @@ infixl 6 $-$
 ($-$) (Money m) (Money n) = Money (m - n)
 
 -- | Multiply a scalar by money
-infixr 7 *$
+infixl 7 *$
 (*$) :: Num a => a -> Money a -> Money a
 (*$) x (Money m) = Money (x * m)
 
