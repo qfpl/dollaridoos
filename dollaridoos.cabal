@@ -9,21 +9,18 @@ synopsis:            A newtype for monetary values
 description:         A newtype for money with appropriate operations defined and no nonsensical instances
 homepage:            https://github.com/qfpl/dollaridoos
 bug-reports:         https://github.com/qfpl/dollaridoos/issues
-cabal-version:       >=1.10
+cabal-version:       >=1.18
 category:            Finance
 build-type:          Simple
 tested-with:
-  GHC == 7.4.2, GHC == 7.6.3, GHC == 7.8.4, GHC == 7.10.3,
-  GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3
-extra-source-files:
-                     .gitignore
-                     .travis.yml
-                     CHANGELOG.md
-                     README.md
+  GHC ==9.6.7 || ==9.8.4 || ==9.10.2 || ==9.12.2
+extra-doc-files:
+  README.md
+  CHANGELOG.md
 
 source-repository   head
   type: git
-  location: git://github.com/qfpl/dollaridoos.git
+  location: https://github.com/qfpl/dollaridoos.git
 
 library
   exposed-modules:     Data.Money
