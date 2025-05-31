@@ -1,5 +1,5 @@
 name:                dollaridoos
-version:             0.1.0.0
+version:             0.2.0.0
 license:             BSD3
 license-file:        LICENSE
 author:              George Wilson
@@ -9,7 +9,7 @@ synopsis:            A newtype for monetary values
 description:         A newtype for money with appropriate operations defined and no nonsensical instances
 homepage:            https://github.com/qfpl/dollaridoos
 bug-reports:         https://github.com/qfpl/dollaridoos/issues
-cabal-version:       >=1.18
+cabal-version:       1.18
 category:            Finance
 build-type:          Simple
 tested-with:
