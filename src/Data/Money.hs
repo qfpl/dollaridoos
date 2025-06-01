@@ -19,12 +19,7 @@ module Data.Money
   , ($**)
   ) where
 
-import Data.Functor (Functor (fmap))
-import Data.Foldable (Foldable (foldMap))
-import Data.Monoid (Monoid, mempty, mappend)
 import Data.Profunctor (Profunctor, dimap)
-import Data.Semigroup (Semigroup, (<>))
-import Data.Traversable (Traversable (traverse))
 
 -- | A newtype for monetary values represented as type @num@.
 --
